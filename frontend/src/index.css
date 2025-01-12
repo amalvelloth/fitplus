@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@keyframes scrollVertical {
+  0% {
+      transform: translateX (100%);
+  }
+  100% {
+      transform: translateX(-100%);
+  }
+}
+
+.scroll-text {
+  animation: scrollVertical 20s linear infinite;
+  transform-origin: center; /* Keeps text centered while scrolling */
+}
