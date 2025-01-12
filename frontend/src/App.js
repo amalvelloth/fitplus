@@ -1,38 +1,46 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
-import './App.css';
-import Login from './pages/Login';
-import Home from './pages/Home';
-import { useState } from 'react';
-import RefrshHandler from './RefrshHandler';
-import Dashboard from './pages/Dashboard';
-import TaskControl from './pages/TaskControl';
-import WorkoutPrograms from './pages/WorkoutPrograms';
-import Settings from './pages/Settings';
-import SignOut from './pages/SignOut';
-
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import "./App.css";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import { useState } from "react";
+import RefrshHandler from "./RefrshHandler";
+import Navbar from './components/Navbar';
+import Dashboard from "./pages/Dashboard";
+import TaskControl from "./pages/TaskControl";
+import WorkoutPrograms from "./pages/WorkoutPrograms";
+import Settings from "./pages/Settings";
+import SignOut from "./pages/SignOut";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const PrivateRoute = ({ element }) => {
-    return isAuthenticated ? element : <Navigate to="/login" />
-  }
+    return isAuthenticated ? element : <Navigate to="/login" />;
+  };
 
   return (
     <div className="App">
+      <ConditionalNavbar />
       <RefrshHandler setIsAuthenticated={setIsAuthenticated} />
       <Routes>
-        <Route path='/' element={<Navigate to="/login" />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/taskcontrol' element={<TaskControl />} />
-        <Route path='/workoutprograms' element={<WorkoutPrograms />} />
-        <Route path='/settings' element={<Settings />} />
-        <Route path='/signout' element={<SignOut />} />
-        <Route path='/home' element={<PrivateRoute element={<Home />} />} />
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/taskcontrol" element={<TaskControl />} />
+        <Route path="/workoutprograms" element={<WorkoutPrograms />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/signout" element={<SignOut />} />
+        <Route path="/home" element={<PrivateRoute element={<Home />} />} />
       </Routes>
     </div>
   );
+}
+
+function ConditionalNavbar() {
+  const location = useLocation();
+  const navbarClass = location.pathname === '/' ? 'bg-transparent' : 'bg-[#BAFF00]';
+
+  return <Navbar className={navbarClass}/>
 }
 
 export default App;
