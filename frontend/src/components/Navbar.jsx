@@ -4,7 +4,7 @@ import BurgerMenu from './BurgerMenu'
 
 function Navbar({ className }) {
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+  const isHomePage = location.pathname === '/login';
 
 
   return (
