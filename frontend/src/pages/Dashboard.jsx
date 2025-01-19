@@ -48,6 +48,7 @@ function Dashboard() {
                 {greeting}{''} <span className="font-extrabold text-4xl max-sm:text-2xl">{capitalizedUserName}</span>
               </h1>
               <h2 className="text-white text-4xl max-sm:text-3xl font-semibold mt-2">Welcome back! 🎉</h2>
+              <button onClick={handleLogout} className='mt-5 px-3 py-2 rounded-lg bg-gray-800 text-red-500'>log out</button>
             </div>
             <div className="avatar bg-white w-24 h-24 rounded-full border-none overflow-hidden">
               <img

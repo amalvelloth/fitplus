@@ -5,9 +5,24 @@ import { FaTasks } from "react-icons/fa";
 import { CgGym } from "react-icons/cg";
 import { IoMdSettings } from "react-icons/io";
 import { PiSignOutBold } from "react-icons/pi";
+import { useNavigate } from 'react-router-dom';
+import { handleSuccess } from '../utils'
 
 
 function BurgerMenu() {
+
+    const handleLogout = (e) => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('loggedInUser');
+        handleSuccess('User Loggedout');
+        setTimeout(() => {
+            navigate('/login');
+        }, 1000)
+    }
+
+    const navigate = useNavigate();
+
+
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
@@ -54,7 +69,7 @@ function BurgerMenu() {
                         activeClassName="underline"
                     >
                         <li className='w-full py-4 px-6 flex items-center'>
-                        <SlGraph className='me-8' />
+                            <SlGraph className='me-8' />
 
                             Dashboard
                         </li>
@@ -99,16 +114,20 @@ function BurgerMenu() {
                     </NavLink>
 
                     <NavLink
-                        to="/signout"
+                        to="/login"
                         className="w-full text-lg font-bold text-black"
-                        onClick={() => setIsOpen(false)}
                         activeClassName="underline"
                     >
-                        <li className='w-full py-4 px-6 flex items-center'>
+                        <li onClick={(e) => {
+                                handleLogout(e);
+                                setIsOpen(false);
+                            }}
+                            className='w-full py-4 px-6 flex items-center text-red-500'>
                             <PiSignOutBold className='me-8' />
                             Sign Out
                         </li>
                     </NavLink>
+
 
                 </ul>
             </div >
