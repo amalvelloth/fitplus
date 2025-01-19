@@ -1,7 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import DesktopMenu from '../components/DesktopMenu';
+import { useNavigate } from 'react-router-dom';
+import { handleSuccess } from '../utils'
 
 function Dashboard() {
+
+  const [loggedInUser, setLoggedInUser] = useState('');
+  const navigate = useNavigate();
+  useEffect(() => {
+    setLoggedInUser(localStorage.getItem('loggedInUser'))
+  }, [])
+
+  const handleLogout = (e) => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('loggedInUser');
+    handleSuccess('User Loggedout');
+    setTimeout(() => {
+      navigate('/login');
+    }, 1000)
+  }
+
+  const capitalizedFirstLetter = (name) => {
+    if(!name) return '';
+    return name.charAt(0).toUpperCase() + name.slice(1);
+  }
+
+  const capitalizedUserName = capitalizedFirstLetter(loggedInUser)
   
   const getGreeting = () => {
     const hours = new Date().getHours();
@@ -21,7 +45,7 @@ function Dashboard() {
           <div className="flex items-start pt-24 justify-start px-8 max-sm:px-4">
             <div className="greetings">
               <h1 className="text-white text-2xl max-sm:text-lg">
-                {greeting}{''} <span className="font-extrabold text-4xl max-sm:text-2xl">AMAL V</span>
+                {greeting}{''} <span className="font-extrabold text-4xl max-sm:text-2xl">{capitalizedUserName}</span>
               </h1>
               <h2 className="text-white text-4xl max-sm:text-3xl font-semibold mt-2">Welcome back! 🎉</h2>
             </div>
