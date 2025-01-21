@@ -37,7 +37,6 @@ const Board = () => {
     try {
       console.log('Sending cards:', cards);
 
-      // Check if cards exist before making the request
       if (cards.length > 0) {
         const response = await fetch('http://localhost:3001/cards', {
           method: 'POST',
@@ -73,7 +72,7 @@ const Board = () => {
       <Column title="In progress" column="doing" headingColor="text-blue-200" cards={cards} setCards={setCards} />
       <Column title="Complete" column="done" headingColor="text-emerald-200" cards={cards} setCards={setCards} />
       <BurnBarrel setCards={setCards} />
-      <button onClick={saveData} className="fixed bottom-8 right-8 p-4 bg-blue-500 text-white rounded-full">
+      <button onClick={saveData} className="fixed bottom-8 right-8 p-4 bg-blue-500 hover:bg-blue-700 text-white rounded-full">
         <FiPlus size={24} />
       </button>
     </div>
