@@ -16,13 +16,12 @@ export const TaskControl = () => {
 };
 
 const Board = () => {
-
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await fetch('http://localhost:3001/cards');
+        const response = await fetch('https://auth-mern-app-api-silk.vercel.app/cards');
         const data = await response.json();
         setCards(data);
       } catch (error) {
@@ -38,7 +37,7 @@ const Board = () => {
       console.log('Sending cards:', cards);
 
       if (cards.length > 0) {
-        const response = await fetch('http://localhost:3001/cards', {
+        const response = await fetch('https://auth-mern-app-api-silk.vercel.app/cards', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -60,10 +59,6 @@ const Board = () => {
       console.error('Error saving cards:', error);
     }
   };
-
-
-
-
 
   return (
     <div className="flex flex-wrap text-2xl max-sm:text-xl max-lg:justify-center h-full w-full max-xl:overflow-scroll gap-3 p-12">
@@ -254,7 +249,6 @@ const BurnBarrel = ({ setCards }) => {
   };
 
   return (
-
     <div
       onDrop={handleDragEnd}
       onDragOver={handleDragOver}
@@ -328,7 +322,5 @@ const AddCard = ({ column, setCards }) => {
     </>
   );
 };
-
-
 
 export default TaskControl;
