@@ -50,7 +50,7 @@ function Dashboard() {
               <h2 className="text-white text-4xl max-sm:text-3xl font-semibold mt-2">Welcome back! 🎉</h2>
               <button onClick={handleLogout} className='mt-5 px-3 py-2 rounded-lg bg-gray-800 text-red-500'>log out</button>
             </div>
-            <div className="avatar bg-white w-24 h-24 rounded-full border-none overflow-hidden">
+            <div className="avatar bg-gray-600 w-24 h-24 rounded-full border-none overflow-hidden">
               <img
                 className="object-cover w-full h-full"
                 src="https://i.pinimg.com/736x/56/28/a6/5628a66967df6318515fcbe7e912e274--cr-ronaldo-cristiano-ronaldo.jpg"

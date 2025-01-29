@@ -21,7 +21,7 @@ const Board = () => {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const response = await fetch('https://auth-mern-app-api-silk.vercel.app/cards');
+        const response = await fetch('https://auth-mern-app-api-silk.vercel.app/api/cards');
         const data = await response.json();
         setCards(data);
       } catch (error) {
@@ -37,7 +37,7 @@ const Board = () => {
       console.log('Sending cards:', cards);
 
       if (cards.length > 0) {
-        const response = await fetch('https://auth-mern-app-api-silk.vercel.app/cards', {
+        const response = await fetch('https://auth-mern-app-api-silk.vercel.app/api/cards', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
